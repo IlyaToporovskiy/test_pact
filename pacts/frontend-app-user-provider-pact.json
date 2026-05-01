@@ -1,0 +1,76 @@
+{
+  "consumer": {
+    "name": "frontend-app"
+  },
+  "provider": {
+    "name": "user-provider"
+  },
+  "interactions": [
+    {
+      "providerState": "a user with id 1 exists",
+      "description": "a request for user 1",
+      "request": {
+        "method": "get",
+        "path": "/users/1"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "id": 1,
+          "name": "Alice",
+          "email": "alice@example.com"
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.name": {
+            "match": "type"
+          },
+          "$.body.email": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "providerState": "user creation is available",
+      "description": "a request to create a user",
+      "request": {
+        "method": "post",
+        "path": "/users",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Bob",
+          "email": "bob@example.com"
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": {
+          "id": 2,
+          "name": "Bob",
+          "email": "bob@example.com"
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.name": {
+            "match": "type"
+          },
+          "$.body.email": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
