@@ -9,7 +9,8 @@ import pytest
 import requests
 
 
-PACT_FILE = Path("pacts/frontend-app-user-provider-pact.json")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PACT_FILE = PROJECT_ROOT / "pacts" / "frontend-app-user-provider-pact.json"
 
 
 def _wait_until_healthy(base_url: str, timeout_seconds: int = 15) -> None:

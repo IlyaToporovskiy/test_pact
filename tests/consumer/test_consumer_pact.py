@@ -4,10 +4,12 @@ import requests
 from pactman import Consumer, Like, Provider
 
 
-PACT_DIR = Path("pacts")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PACT_DIR = PROJECT_ROOT / "pacts"
 
 
 def test_consumer_generates_pact() -> None:
+    PACT_DIR.mkdir(parents=True, exist_ok=True)
     pact = Consumer("frontend-app").has_pact_with(
         Provider("user-provider"),
         pact_dir=str(PACT_DIR),
